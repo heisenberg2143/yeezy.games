@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Yeezy Games</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+}
+
+header{
+background:#1a1a1a;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#4CAF50;
+}
+
+.search{
+padding:10px;
+border:none;
+border-radius:8px;
+width:200px;
+}
+
+.container{
+padding:40px;
+}
+
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:20px;
+}
+
+.game{
+background:#1c1c1c;
+padding:20px;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+transition:0.2s;
+}
+
+.game:hover{
+transform:scale(1.05);
+background:#2a2a2a;
+}
+
+.game img{
+width:100%;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+footer{
+margin-top:50px;
+padding:20px;
+text-align:center;
+background:#1a1a1a;
+color:#aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🎮 Yeezy Games</div>
+
+<input class="search" id="search" placeholder="Oyun ara...">
+
+</header>
+
+<div class="container">
+
+<h2>Popüler Oyunlar</h2>
+
+<div class="games" id="games">
+
+<div class="game">
+<img src="https://via.placeholder.com/200x120">
+<h3>Yakında</h3>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/200x120">
+<h3>Yakında</h3>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/200x120">
+<h3>Yakında</h3>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/200x120">
+<h3>Yakında</h3>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Yeezy Games © 2026
+</footer>
+
+<script>
+
+const search = document.getElementById("search");
+const games = document.querySelectorAll(".game");
+
+search.addEventListener("keyup", function(){
+
+let value = search.value.toLowerCase();
+
+games.forEach(game => {
+
+let title = game.innerText.toLowerCase();
+
+if(title.includes(value))
+{
+game.style.display="block";
+}
+else
+{
+game.style.display="none";
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
