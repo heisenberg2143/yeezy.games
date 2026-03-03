@@ -1,120 +1,42 @@
+```html
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yeezy Games</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
 body{
 background:#0f0f0f;
 color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
 }
 
-/* NAVBAR */
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
-background:#151515;
-position:sticky;
-top:0;
+h1{
+padding:20px;
 }
 
-.logo{
-font-size:24px;
-font-weight:bold;
-color:#4CAF50;
-}
-
-.search{
-padding:8px 12px;
-border-radius:8px;
+.menu button{
+padding:15px 25px;
+margin:10px;
+font-size:16px;
+cursor:pointer;
 border:none;
-width:220px;
+border-radius:8px;
+background:#4CAF50;
+color:white;
 }
-
-/* CONTAINER */
-
-.container{
-padding:30px;
-}
-
-/* SECTION TITLE */
-
-.section-title{
-font-size:22px;
-margin-bottom:15px;
-}
-
-/* GAME GRID */
-
-.games{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-gap:20px;
-}
-
-/* GAME CARD */
 
 .game{
-background:#1b1b1b;
-border-radius:12px;
-overflow:hidden;
-cursor:pointer;
-transition:0.2s;
+display:none;
+margin-top:20px;
 }
 
-.game:hover{
-transform:scale(1.05);
-background:#242424;
-}
-
-.game img{
-width:100%;
-height:110px;
-object-fit:cover;
-}
-
-.game-title{
-padding:10px;
-font-size:14px;
-}
-
-/* TRENDING */
-
-.trending{
-margin-bottom:40px;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:20px;
-background:#151515;
-margin-top:40px;
-color:#aaa;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-.search{
-width:140px;
-}
-
+canvas{
+background:black;
 }
 
 </style>
@@ -122,110 +44,223 @@ width:140px;
 
 <body>
 
-<nav>
+<h1>🎮 Yeezy Games</h1>
 
-<div class="logo">🎮 Yeezy Games</div>
+<div class="menu">
 
-<input class="search" id="search" placeholder="Oyun ara...">
-
-</nav>
-
-<div class="container">
-
-<div class="trending">
-
-<div class="section-title">🔥 Trending</div>
-
-<div class="games">
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
+<button onclick="showGame('snake')">Snake</button>
+<button onclick="showGame('flappy')">Flappy Bird</button>
+<button onclick="showGame('click')">Click Test</button>
+<button onclick="showGame('guess')">Guess Number</button>
+<button onclick="showGame('reaction')">Reaction Test</button>
 
 </div>
 
-</div>
+<!-- SNAKE -->
 
-<div class="section-title">🎮 Tüm Oyunlar</div>
+<div id="snake" class="game">
 
-<div class="games" id="games">
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
-
-<div class="game">
-<img src="https://via.placeholder.com/300x200">
-<div class="game-title">Yakında</div>
-</div>
+<h2>Snake</h2>
+<canvas id="snakeCanvas" width="400" height="400"></canvas>
 
 </div>
 
+<!-- FLAPPY -->
+
+<div id="flappy" class="game">
+
+<h2>Flappy Bird</h2>
+<p>Space ile zıpla</p>
+<canvas id="flappyCanvas" width="400" height="500"></canvas>
+
 </div>
 
-<footer>
-Yeezy Games © 2026
-</footer>
+<!-- CLICK TEST -->
+
+<div id="click" class="game">
+
+<h2>Click Speed Test</h2>
+
+<button onclick="clicks++" style="font-size:30px;padding:20px">
+CLICK
+</button>
+
+<h3 id="clickScore">0</h3>
+
+</div>
+
+<!-- GUESS -->
+
+<div id="guess" class="game">
+
+<h2>Guess the Number</h2>
+
+<p>1-100 arası sayı tahmin et</p>
+
+<input id="guessInput">
+<button onclick="checkGuess()">Tahmin</button>
+
+<p id="guessMsg"></p>
+
+</div>
+
+<!-- REACTION -->
+
+<div id="reaction" class="game">
+
+<h2>Reaction Test</h2>
+
+<button id="reactionBtn">Bekle...</button>
+
+</div>
 
 <script>
 
-const search = document.getElementById("search")
-const games = document.querySelectorAll(".game")
+/* GAME SWITCH */
 
-search.addEventListener("keyup", function(){
+function showGame(id){
 
-let value = search.value.toLowerCase()
-
-games.forEach(game => {
-
-let title = game.innerText.toLowerCase()
-
-if(title.includes(value))
-{
-game.style.display="block"
-}
-else
-{
-game.style.display="none"
-}
-
+document.querySelectorAll(".game").forEach(g=>{
+g.style.display="none"
 })
 
+document.getElementById(id).style.display="block"
+
+}
+
+/* SNAKE */
+
+const canvas=document.getElementById("snakeCanvas")
+const ctx=canvas.getContext("2d")
+
+let snake=[{x:200,y:200}]
+let food={x:100,y:100}
+let dx=20
+let dy=0
+
+document.addEventListener("keydown",e=>{
+if(e.key==="ArrowUp"){dx=0;dy=-20}
+if(e.key==="ArrowDown"){dx=0;dy=20}
+if(e.key==="ArrowLeft"){dx=-20;dy=0}
+if(e.key==="ArrowRight"){dx=20;dy=0}
 })
+
+function snakeGame(){
+
+ctx.fillStyle="black"
+ctx.fillRect(0,0,400,400)
+
+ctx.fillStyle="red"
+ctx.fillRect(food.x,food.y,20,20)
+
+ctx.fillStyle="lime"
+
+snake.forEach(p=>{
+ctx.fillRect(p.x,p.y,20,20)
+})
+
+let head={x:snake[0].x+dx,y:snake[0].y+dy}
+snake.unshift(head)
+
+if(head.x===food.x && head.y===food.y){
+
+food.x=Math.floor(Math.random()*20)*20
+food.y=Math.floor(Math.random()*20)*20
+
+}else{
+
+snake.pop()
+
+}
+
+}
+
+setInterval(snakeGame,100)
+
+/* FLAPPY */
+
+let fc=document.getElementById("flappyCanvas")
+let fctx=fc.getContext("2d")
+
+let y=200
+let velocity=0
+let gravity=2
+
+document.addEventListener("keydown",e=>{
+if(e.code==="Space") velocity=-15
+})
+
+function flappyGame(){
+
+velocity+=gravity
+y+=velocity
+
+fctx.fillStyle="skyblue"
+fctx.fillRect(0,0,400,500)
+
+fctx.fillStyle="yellow"
+fctx.fillRect(180,y,40,40)
+
+requestAnimationFrame(flappyGame)
+
+}
+
+flappyGame()
+
+/* CLICK TEST */
+
+let clicks=0
+
+setInterval(()=>{
+document.getElementById("clickScore").innerText=clicks
+},100)
+
+setTimeout(()=>{
+alert("Click Test bitti! Skor: "+clicks)
+},10000)
+
+/* GUESS NUMBER */
+
+let number=Math.floor(Math.random()*100)+1
+
+function checkGuess(){
+
+let g=document.getElementById("guessInput").value
+
+if(g==number){
+guessMsg.innerText="Doğru!"
+}
+
+else if(g>number){
+guessMsg.innerText="Daha küçük"
+}
+
+else{
+guessMsg.innerText="Daha büyük"
+}
+
+}
+
+/* REACTION */
+
+let start
+
+setTimeout(()=>{
+
+reactionBtn.innerText="Şimdi Tıkla!"
+start=Date.now()
+
+},Math.random()*4000+2000)
+
+reactionBtn.onclick=function(){
+
+let time=Date.now()-start
+alert("Reaksiyon: "+time+" ms")
+
+}
 
 </script>
 
 </body>
 </html>
+```
