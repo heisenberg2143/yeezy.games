@@ -2,74 +2,119 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yeezy Games</title>
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial;
+}
+
+body{
 background:#0f0f0f;
 color:white;
 }
 
-header{
-background:#1a1a1a;
-padding:20px;
+/* NAVBAR */
+
+nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:15px 30px;
+background:#151515;
+position:sticky;
+top:0;
 }
 
 .logo{
-font-size:28px;
+font-size:24px;
 font-weight:bold;
 color:#4CAF50;
 }
 
 .search{
-padding:10px;
-border:none;
+padding:8px 12px;
 border-radius:8px;
-width:200px;
+border:none;
+width:220px;
 }
 
+/* CONTAINER */
+
 .container{
-padding:40px;
+padding:30px;
 }
+
+/* SECTION TITLE */
+
+.section-title{
+font-size:22px;
+margin-bottom:15px;
+}
+
+/* GAME GRID */
 
 .games{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
 gap:20px;
 }
 
+/* GAME CARD */
+
 .game{
-background:#1c1c1c;
-padding:20px;
-border-radius:10px;
-text-align:center;
+background:#1b1b1b;
+border-radius:12px;
+overflow:hidden;
 cursor:pointer;
 transition:0.2s;
 }
 
 .game:hover{
 transform:scale(1.05);
-background:#2a2a2a;
+background:#242424;
 }
 
 .game img{
 width:100%;
-border-radius:8px;
-margin-bottom:10px;
+height:110px;
+object-fit:cover;
 }
 
+.game-title{
+padding:10px;
+font-size:14px;
+}
+
+/* TRENDING */
+
+.trending{
+margin-bottom:40px;
+}
+
+/* FOOTER */
+
 footer{
-margin-top:50px;
-padding:20px;
 text-align:center;
-background:#1a1a1a;
+padding:20px;
+background:#151515;
+margin-top:40px;
 color:#aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.search{
+width:140px;
+}
+
 }
 
 </style>
@@ -77,38 +122,73 @@ color:#aaa;
 
 <body>
 
-<header>
+<nav>
 
 <div class="logo">🎮 Yeezy Games</div>
 
 <input class="search" id="search" placeholder="Oyun ara...">
 
-</header>
+</nav>
 
 <div class="container">
 
-<h2>Popüler Oyunlar</h2>
+<div class="trending">
+
+<div class="section-title">🔥 Trending</div>
+
+<div class="games">
+
+<div class="game">
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="section-title">🎮 Tüm Oyunlar</div>
 
 <div class="games" id="games">
 
 <div class="game">
-<img src="https://via.placeholder.com/200x120">
-<h3>Yakında</h3>
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
 </div>
 
 <div class="game">
-<img src="https://via.placeholder.com/200x120">
-<h3>Yakında</h3>
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
 </div>
 
 <div class="game">
-<img src="https://via.placeholder.com/200x120">
-<h3>Yakında</h3>
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
 </div>
 
 <div class="game">
-<img src="https://via.placeholder.com/200x120">
-<h3>Yakında</h3>
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
+</div>
+
+<div class="game">
+<img src="https://via.placeholder.com/300x200">
+<div class="game-title">Yakında</div>
 </div>
 
 </div>
@@ -121,29 +201,29 @@ Yeezy Games © 2026
 
 <script>
 
-const search = document.getElementById("search");
-const games = document.querySelectorAll(".game");
+const search = document.getElementById("search")
+const games = document.querySelectorAll(".game")
 
 search.addEventListener("keyup", function(){
 
-let value = search.value.toLowerCase();
+let value = search.value.toLowerCase()
 
 games.forEach(game => {
 
-let title = game.innerText.toLowerCase();
+let title = game.innerText.toLowerCase()
 
 if(title.includes(value))
 {
-game.style.display="block";
+game.style.display="block"
 }
 else
 {
-game.style.display="none";
+game.style.display="none"
 }
 
-});
+})
 
-});
+})
 
 </script>
 
